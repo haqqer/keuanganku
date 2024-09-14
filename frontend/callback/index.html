@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Keuanganku</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100">
+    <div class="container mx-auto">
+      <div class="flex h-screen justify-center items-center">Redirect ...</div>
+    </div>
+    <script type="module">
+      import { HOST } from "../js/constants.js";
+      const searchParams = new URLSearchParams(window.location.search);
+      const accessToken = searchParams.get("access_token");
+      const refreshToken = searchParams.get("refresh_token");
+
+      if (accessToken !== "" && refreshToken !== "") {
+        localStorage.setItem("access_token", accessToken);
+        localStorage.setItem("refresh_token", refreshToken);
+      } else {
+        window.location = `${HOST}/login`;
+      }
+
+      setTimeout(() => {
+        window.location = HOST;
+      }, 2000);
+    </script>
+  </body>
+</html>
